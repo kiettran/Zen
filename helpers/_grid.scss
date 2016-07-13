@@ -1,0 +1,31 @@
+/**
+ * Grid system based on BEM structure & Neat grid module
+ * More information can be found on http://neat.bourbon.io/
+ */
+@mixin grid-system($columns: 12) {
+  @include b(grid) {
+    @include e(container) {
+      @include outer-container();
+    }
+
+    @include e(row) {
+      @include row;
+    }
+
+    @include e(col) {
+      @for $i from 1 through $columns {
+        @include m(#{$i}) {
+          @include span-columns($i);
+        }
+      }
+    }
+
+    @include e(shift) {
+      @for $i from 1 through ($columns - 1) {
+        @include m(#{$i}) {
+          @include shift($i);
+        }
+      }
+    }
+  }
+}
